@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.boxed.smartboxed</groupId>
+  <artifactId>QA-smartboxed</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>QA-smartboxed</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- Configurable variables -->
+    <groups>sanity</groups>
+    <browser>chrome</browser>
+    <env>staging</env>
+    <logging>false</logging>
+    <sendReportToSlack>false</sendReportToSlack>
+    <isDocker>false</isDocker>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- Disable unit tests -->
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.20</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <systemPropertyVariables>
+            <groups>${groups}</groups>
+            <browser>${browser}</browser>
+            <env>${env}</env>
+            <logging>${logging}</logging>
+            <sendReportToSlack>${sendReportToSlack}</sendReportToSlack>
+            <isDocker>${isDocker}</isDocker>
+          </systemPropertyVariables>
+          <properties>
+            <!--<property>-->
+              <!--<name>usedefaultlisteners</name>-->
+              <!--<value>false</value>-->
+            <!--</property>-->
+            <!--<property>-->
+              <!--<name>listener</name>-->
+              <!--<value>listeners.TestNGListener, listeners.AnnotationTransformer</value>-->
+            <!--</property>-->
+            <!--<property>-->
+              <!--<name>configfailurepolicy</name>-->
+              <!--<value>continue</value>-->
+            <!--</property>-->
+          </properties>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.14.3</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>3.13.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.github.seratch/jslack -->
+    <dependency>
+      <groupId>com.github.seratch</groupId>
+      <artifactId>jslack</artifactId>
+      <version>1.0.18</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java -->
+    <dependency>
+      <groupId>com.mashape.unirest</groupId>
+      <artifactId>unirest-java</artifactId>
+      <version>1.4.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>2.9.6</version>
+    </dependency>
+  </dependencies>
+</project>
