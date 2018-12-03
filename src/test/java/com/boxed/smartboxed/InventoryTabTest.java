@@ -9,5 +9,6 @@ import pages.LoginPage;
  */
 
     public class InventoryTabTest extends AbstractTest{
+        
 
 }

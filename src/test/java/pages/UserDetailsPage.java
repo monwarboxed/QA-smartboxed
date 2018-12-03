@@ -38,12 +38,26 @@ public class UserDetailsPage extends AbstractPage {
 
     By cancelButtonLocator = By.cssSelector("body > div.container > div > div > div > a.btn.btn-default");
 
+    By deactiveButtonLocator = By.linkText("Deactivate");
+
+    By deactiveButtonConfirmationLocator = By.xpath("/html//button[@id='deactivate-user']");
+
     public UserTabPage createUser () throws  InterruptedException {
-        type(emailFieldLocator, "testqa5@boxed.com");
+        type(emailFieldLocator, "testqa1@boxed.com");
         type(passwordFieldLocator, "Boxed123");
         type(confirmFieldLocator, "Boxed123");
         click(elementBy(addButtonLocator));
         return new UserTabPage();
+    }
+
+    public void updateUserDetails () {
+        type(emailFieldLocator, "testuser2@boxed.com");
+    }
+
+    public void deactivateUserAccount () throws  InterruptedException{
+        click(elementBy(deactiveButtonLocator));
+
+
     }
 
 }

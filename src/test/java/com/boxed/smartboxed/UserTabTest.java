@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class UserTabTest extends AbstractTest {
 
     @Test(groups = {"sanity"})
-    public void createUserAccount() throws InterruptedException{
+    public void testCreateUserAccount() throws InterruptedException{
         homePage = loginPage.signInUser();
         userTabPage = homePage.header.navigateToUserTabPage();
         userDetailsPage = userTabPage.addUser();
@@ -20,13 +20,25 @@ public class UserTabTest extends AbstractTest {
     }
 
     @Test(groups = {"sanity"})
-    public void updateUserAccount() throws InterruptedException{
+    public void testUpdateUserAccount() throws InterruptedException{
         homePage = loginPage.signInUser();
         userDetailsPage = homePage.header.navigateToUserDetailsPage();
+        userDetailsPage.updateUserDetails();
     }
 
     @Test(groups = {"sanity"})
-    public void deactivateUserAccount() {
+    public void testDeactivateUserAccount() throws InterruptedException{
+        homePage = loginPage.signInUser();
+        userTabPage = homePage.header.navigateToUserTabPage();
+        userDetailsPage = userTabPage.addUser();
+        userDetailsPage.createUser();
     }
 
+    @Test(groups = {"sanity"})
+    public void testNavigateToUserDetails() throws InterruptedException{
+        homePage = loginPage.signInUser();
+        userTabPage = homePage.header.navigateToUserTabPage();
+        userDetailsPage = userTabPage.navigateUser();
+        Thread.sleep(2000);
+    }
 }

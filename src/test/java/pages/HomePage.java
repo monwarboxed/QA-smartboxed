@@ -35,6 +35,4 @@ public class HomePage extends AbstractPage{
         wait.until(visibilityOfElementLocated(dimensionLocator));
     }
 
-
-
 }

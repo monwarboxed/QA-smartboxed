@@ -8,11 +8,6 @@ import pages.HomePage;
  */
 public class LoginTest extends AbstractTest{
 
-    @Test(groups = {"sanity"})
-    public void testSignInUser() throws InterruptedException {
-       homePage = loginPage.signInUser();
-       Thread.sleep(2000);
-    }
 
     @Test(groups = {"sanity"})
     public void testInvalidUser() {
@@ -20,10 +15,18 @@ public class LoginTest extends AbstractTest{
     }
 
     @Test(groups = {"sanity"})
+    public void testSignInUser() throws InterruptedException {
+       homePage = loginPage.signInUser();
+       Thread.sleep(2000);
+    }
+
+    @Test(groups = {"sanity"})
     public void testLoginFormUser() throws InterruptedException {
         loginPage.observeLoginPresence();
         Thread.sleep(2000);
     }
+
+
 
 
 }
