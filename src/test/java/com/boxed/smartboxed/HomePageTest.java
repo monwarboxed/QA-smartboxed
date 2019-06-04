@@ -1,5 +1,7 @@
 package com.boxed.smartboxed;
 
+
+import annotations.NeedsLogout;
 import org.testng.annotations.Test;
 
 /**
@@ -7,7 +9,8 @@ import org.testng.annotations.Test;
  */
     public class HomePageTest extends AbstractTest{
 
-         @Test(groups = {"sanity"})
+         @NeedsLogout
+         @Test(groups = {"smoke"})
          public void verifyDashboardComponent() throws InterruptedException {
              homePage = loginPage.signInUser();
              homePage.verifyDimensionLocator();

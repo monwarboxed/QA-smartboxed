@@ -5,7 +5,8 @@
     <test name="default tests">
         <groups>
             <run>
-                <include name="sanity"/>
+                <include name="smoke"/>
+                <include name="samples"/>
             </run>
         </groups>
 

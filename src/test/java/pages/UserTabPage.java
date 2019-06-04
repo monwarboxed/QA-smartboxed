@@ -21,18 +21,18 @@ public class UserTabPage extends AbstractPage {
 
     By addButtonLocator = By.linkText("Add");
 
-    By userDetailsPageLocator = By.cssSelector("#order-table-body [href='\\/smartboxed_users\\/5beb3405654df70100fb159c']");
+    By firstUserDetailsPageLocator = By.cssSelector("#order-table-body > tr:nth-child(1) > td:nth-child(1) > a");
 
     public UserDetailsPage addUser() {
         click(wait.until(elementToBeClickable(addButtonLocator)));
-        return  new UserDetailsPage();
-
-    }
-
-    public UserDetailsPage navigateUser() {
-        click(wait.until(elementToBeClickable(userDetailsPageLocator)));
         return new UserDetailsPage();
     }
+
+    public UserDetailsPage navigateUserDetailsPage() {
+        click(wait.until(elementToBeClickable(firstUserDetailsPageLocator)));
+        return new UserDetailsPage();
+    }
+
 
 
 }

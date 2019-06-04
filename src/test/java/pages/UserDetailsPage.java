@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
@@ -30,7 +31,13 @@ public class UserDetailsPage extends AbstractPage {
 
     By roleSelectorLocator =  By.cssSelector("#role");
 
+    By adminSelectorLocator = By.cssSelector("#role > option:nth-child(1)");
+
+    By managerSelectorLocator = By.cssSelector("#role > option:nth-child(3)");
+
     By sourceSelectorLocator = By.cssSelector("#source");
+
+    By boxedFulfillmentLocator = By.cssSelector("#source > option:nth-child(3)");
 
     By warehouseSelectorLocator = By.cssSelector("#warehouse");
 
@@ -40,24 +47,52 @@ public class UserDetailsPage extends AbstractPage {
 
     By deactiveButtonLocator = By.linkText("Deactivate");
 
+    By userTabBodySectionPage = By.cssSelector("body > div.container > h3");
+
     By deactiveButtonConfirmationLocator = By.xpath("/html//button[@id='deactivate-user']");
 
-    public UserTabPage createUser () throws  InterruptedException {
-        type(emailFieldLocator, "testqa1@boxed.com");
-        type(passwordFieldLocator, "Boxed123");
-        type(confirmFieldLocator, "Boxed123");
-        click(elementBy(addButtonLocator));
-        return new UserTabPage();
-    }
+    By reactivateButtonLocator = By.xpath("/html//a[@id='reactivate-user']");
+
+   /* private void signUp(String email, String password) {
+        clearAndType(emailFieldLocator, email);
+        type(passwordInput, password);
+        click(signUpButton);
+
+        wait.until(invisibilityOfElementLocated(modalBodyLocator));
+    }*/
 
     public void updateUserDetails () {
         type(emailFieldLocator, "testuser2@boxed.com");
     }
 
-    public void deactivateUserAccount () throws  InterruptedException{
+    public DeactivateAccountModalPage deactivateUserAccount () throws  InterruptedException{
         click(elementBy(deactiveButtonLocator));
-
-
+        return new DeactivateAccountModalPage();
     }
+
+    public UserDetailsPage reactivateAccount() throws InterruptedException{
+        click(elementBy(reactivateButtonLocator));
+        return new UserDetailsPage();
+    }
+
+    private void signUp(String email) throws InterruptedException{
+        clearAndType(emailFieldLocator, email);
+        type(passwordFieldLocator,"Ismaeljalil94");
+        type(confirmFieldLocator,"Ismaeljalil94");
+        click(wait.until(visibilityOfElementLocated(roleSelectorLocator)));
+        click(wait.until(visibilityOfElementLocated(managerSelectorLocator)));
+        click(wait.until(visibilityOfElementLocated(sourceSelectorLocator)));
+        click(wait.until(visibilityOfElementLocated(boxedFulfillmentLocator)));
+        click(addButtonLocator);
+    }
+
+    public UserTabPage signUpWithValidCredentials(String email) throws  InterruptedException {
+        signUp(email);
+        return new UserTabPage();
+    }
+
+
+
+
 
 }

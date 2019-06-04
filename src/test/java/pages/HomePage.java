@@ -17,7 +17,7 @@ public class HomePage extends AbstractPage{
 
     public Header header = new Header();
 
-    By bodySectionLocator = By.cssSelector("body > div.container > div.smartboxed-home > h1.text-left > a > font");
+    By bodySectionLocator = By.cssSelector("body");
 
     public void verifyPresence() {wait.until(visibilityOfElementLocated(bodySectionLocator));}
 

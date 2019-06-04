@@ -52,18 +52,18 @@
             <isDocker>${isDocker}</isDocker>
           </systemPropertyVariables>
           <properties>
-            <!--<property>-->
-              <!--<name>usedefaultlisteners</name>-->
-              <!--<value>false</value>-->
-            <!--</property>-->
-            <!--<property>-->
-              <!--<name>listener</name>-->
-              <!--<value>listeners.TestNGListener, listeners.AnnotationTransformer</value>-->
-            <!--</property>-->
-            <!--<property>-->
-              <!--<name>configfailurepolicy</name>-->
-              <!--<value>continue</value>-->
-            <!--</property>-->
+            <property>
+              <name>usedefaultlisteners</name>
+              <value>false</value>
+            </property>
+            <property>
+              <name>listener</name>
+              <value>listeners.TestNGListener</value>
+            </property>
+            <property>
+              <name>configfailurepolicy</name>
+              <value>continue</value>
+            </property>
           </properties>
         </configuration>
         <executions>
@@ -111,6 +111,11 @@
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
       <version>2.9.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>3.1.5</version>
     </dependency>
   </dependencies>
 </project>

@@ -5,15 +5,15 @@ import org.openqa.selenium.By;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
- * Created by monwarjalil on 11/27/18.
+ * Created by monwarjalil on 3/23/19.
  */
-public class ViewOrdersPage extends AbstractPage {
-    public ViewOrdersPage() {verifyPresence();}
+public class SmartBoxedShipmentPage extends AbstractPage {
 
     public Header header = new Header();
 
-    By BodySection = By.cssSelector("body > div.header > h4");
+    By BodySection = By.cssSelector("body");
 
     public void verifyPresence() {wait.until(visibilityOfElementLocated(BodySection));}
+
 
 }

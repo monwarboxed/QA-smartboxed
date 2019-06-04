@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
@@ -21,9 +22,9 @@ public class Header extends AbstractPage{
 
     public void verifyPresence() {wait.until(visibilityOfElementLocated(HeaderSectionLocator));}
 
-    By HeaderSectionLocator = By.className("navbar");
+    By HeaderSectionLocator = By.cssSelector("body > div.header > div");
 
-    By SignOutLinkLocator = By.linkText("Sign out");
+    By SignOutLinkLocator = By.cssSelector("body > div.header > div > div > div > ul:nth-child(2) > li > a");
 
     By SmartBoxedLogoLocator = By.className("navbar-brand");
 
@@ -34,6 +35,34 @@ public class Header extends AbstractPage{
     By BatchPoolsLinkLocator = By.linkText("Batch pools");
 
     By UserDetailsLinkLocator = By.cssSelector("body > div.header > div > div > div > ul:nth-child(3) > li > a");
+
+    By InventoryMenuLocator = By.cssSelector("#inventoryMenu");
+
+    By InventoryItemLocator = By.linkText("Inventory Items");
+
+    By PurchaseOrderLocator = By.linkText("Purchase Orders");
+
+    By SuperAdministratorLocator = By.cssSelector(".text-right");
+
+    By WareHouseSelectorLocator = By.cssSelector("#warehouse-select");
+
+    By nationalSelectorLocator = By.cssSelector("#warehouse-select > option:nth-child(1)");
+
+    By cheyenneSelectorLocator = By.cssSelector("#warehouse-select > option:nth-child(4)");
+
+    By labsSelectorLocator = By.cssSelector("#warehouse-select > option:nth-child(8)");
+
+    By WareHouseInventoriesPageLocator = By.linkText("Warehouse Inventories");
+
+    By OrderMenuLocator = By.cssSelector("#ordersMenu");
+
+    By ViewOrderLocator = By.linkText("View Order");
+
+    By AllOrderLocator = By.linkText("All Orders");
+
+    By SmartBoxedShipmentSelector = By.linkText("Smartboxed Shipments");
+
+    By CycleCountSelector = By.linkText("Cycle Counts");
 
     @FindBy(css = "#inventoryMenu")
     private WebElement inventory;
@@ -81,6 +110,63 @@ public class Header extends AbstractPage{
     public void hoverOnOrderTab() throws  InterruptedException {
         System.out.println("orders" + orders.getSize());
         actions.moveToElement(orders).perform();
+    }
+
+    public InventoryItemPage navigateToInventoryItemPage() throws InterruptedException {
+        click(wait.until(visibilityOf(inventory)));
+        Thread.sleep(2000);
+        click(wait.until(visibilityOfElementLocated(InventoryItemLocator)));
+        return new InventoryItemPage();
+    }
+
+    public WarehouseInventoriesPage navigateToWarehouseInventories() throws InterruptedException {
+        click(wait.until(visibilityOf(inventory)));
+        Thread.sleep(2000);
+        click(wait.until(visibilityOfElementLocated(WareHouseInventoriesPageLocator)));
+        return new WarehouseInventoriesPage();
+    }
+
+    public PurchaseOrdersPage navigateToPurchaseOrdersPage() throws InterruptedException {
+        click(wait.until(visibilityOf(inventory)));
+        Thread.sleep(2000);
+        click(wait.until(visibilityOfElementLocated(PurchaseOrderLocator)));
+        return new PurchaseOrdersPage();
+    }
+
+    public void SwitchToDifferentWareHouses() throws InterruptedException {
+        click(wait.until(visibilityOfElementLocated(WareHouseSelectorLocator)));
+        click(wait.until(visibilityOfElementLocated(nationalSelectorLocator)));
+        click(wait.until(visibilityOfElementLocated(cheyenneSelectorLocator)));
+        click(wait.until(visibilityOfElementLocated(labsSelectorLocator)));
+
+    }
+
+    public ViewOrdersPage navigateToViewOrdersPage() throws InterruptedException {
+        click(wait.until(visibilityOfElementLocated(OrderMenuLocator)));
+        Thread.sleep(2000);
+        click(wait.until(visibilityOfElementLocated(ViewOrderLocator)));
+        Thread.sleep(2000);
+        return new ViewOrdersPage();
+    }
+
+    public AllOrdersPage navigateToAllOrdersPage() throws InterruptedException {
+        click(wait.until(visibilityOfElementLocated(OrderMenuLocator)));
+        click(wait.until(visibilityOfElementLocated(AllOrderLocator)));
+        return new AllOrdersPage();
+    }
+
+    public SmartBoxedShipmentPage navigateToSmartBoxedShipmentPage() throws InterruptedException {
+        click(wait.until(visibilityOfElementLocated(OrderMenuLocator)));
+        Thread.sleep(2000);
+        click(wait.until(visibilityOfElementLocated(SmartBoxedShipmentSelector)));
+        return new SmartBoxedShipmentPage();
+    }
+
+    public CycleCountsPage navigateToCycleCountPage() throws InterruptedException {
+        click(wait.until(visibilityOfElementLocated(InventoryMenuLocator)));
+        Thread.sleep(2000);
+        click(wait.until(visibilityOfElementLocated(CycleCountSelector)));
+        return new CycleCountsPage();
     }
 
 

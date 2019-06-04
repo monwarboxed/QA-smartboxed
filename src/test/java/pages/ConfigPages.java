@@ -20,7 +20,6 @@ public class ConfigPages extends AbstractPage {
         wait.until(visibilityOfElementLocated(configBodySectionLocator));
     }
 
-
     By configBodySectionLocator = By.cssSelector("#variant-info > fieldset > legend");
 
 }
